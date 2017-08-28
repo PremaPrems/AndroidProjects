@@ -16,10 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-
-/**
- * Created by prema on 27/8/17.
- */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     private Context context;

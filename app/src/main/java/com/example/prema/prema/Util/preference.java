@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 
-/**
- * Created by prema on 28/8/17.
- */
 public class preference {
     SharedPreferences sharedPreferences;
     public preference(Activity activity) {
