@@ -2,11 +2,7 @@ package com.example.prema.prema.Model;
 
 import java.io.Serializable;
 
-/**
- * Created by prema on 27/8/17.
- */
 public class Contacts implements Serializable {
-    private static final long id = 1L;
     private String name;
     private String image;
 

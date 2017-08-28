@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue queue;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
             }
         });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-//        recyclerView.hasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contactsList = new ArrayList<>();
         preference pref = new preference(MainActivity.this);
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         contactsList.clear();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Constants.URL, new Response.Listener<JSONObject>() {
+
             @Override
             public void onResponse(JSONObject response) {
 
