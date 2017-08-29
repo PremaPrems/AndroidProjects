@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
     private ContactAdapter contactAdapter;
     private List<Contacts> contactsList;
     private RequestQueue queue;
@@ -45,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         queue = Volley.newRequestQueue(this);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        recyclerView = (RecyclerView) findViewById(R.id.contactrecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         contactsList = new ArrayList<>();
         preference pref = new preference(MainActivity.this);
         String search = pref.getSearch();
         getContact(search);
 
-
+        contactAdapter = new ContactAdapter(this,contactsList);
+        recyclerView.setAdapter(contactAdapter);
     }
 
     public List<Contacts> getContact(String searchTerm) {
@@ -79,12 +82,13 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     JSONArray contactArray = response.getJSONArray("search");
-                    Log.d("data:", response.getString("name"));
                     for (int i = 0; i < contactArray.length(); i++) {
                         JSONObject contactobj = contactArray.getJSONObject(i);
-                        Log.d("data111:", contactobj.getString("name"));
-                        Contacts contact = new Contacts();
+                        Contacts contact = new Contacts((contactobj.getString("name")),(contactobj.getString("image")));
                         contact.setName(contactobj.getString("name"));
+                        Log.d("Api response",(contactobj.get("name")).toString());
+                        Log.d("Api response",(contactobj.get("image")).toString());
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
