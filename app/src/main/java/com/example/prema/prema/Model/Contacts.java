@@ -6,8 +6,9 @@ public class Contacts implements Serializable {
     private String name;
     private String image;
 
-    public Contacts(){
-
+    public Contacts(String name, String image){
+        this.name=name;
+        this.image=image;
     }
 
     public String getName() {

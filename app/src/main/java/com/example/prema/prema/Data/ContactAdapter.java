@@ -1,20 +1,20 @@
 package com.example.prema.prema.Data;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prema.prema.Model.Contacts;
 import com.example.prema.prema.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
@@ -54,8 +54,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView name;
-        ImageView image;
+        public TextView name;
+        public ImageView image;
         public ViewHolder(View itemView, Context ctx) {
             super(itemView);
             context =ctx;
@@ -64,6 +64,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    Toast.makeText(context,"Row Tapped!",Toast.LENGTH_LONG).show();
 
                 }
             });
